@@ -5,12 +5,14 @@ const MiscSchema = new Schema({
     blacklistedUser: [
         {
             id: SchemaTypes.String,
+            name: SchemaTypes.String,
             reason: SchemaTypes.String
         }
     ],
     blacklistedGuild: [
         {
             id: SchemaTypes.String,
+            name: SchemaTypes.String,
             reason: SchemaTypes.String
         }
     ],
