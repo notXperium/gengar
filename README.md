@@ -8,13 +8,6 @@
   </kbd>
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/github/languages/top/notXperium/gengar?style=flat-square">
-  <img src="https://img.shields.io/github/last-commit/notXperium/gengar?style=flat-square">
-  <img src="https://img.shields.io/github/stars/notXperium/gengar?color=%02B039&label=Stars&style=flat-square">
-  <img src="https://img.shields.io/github/forks/notXperium/gengar?color=%02B039&label=Forks&style=flat-square">
-</p>
-
 <h2 align="center">
   Gengar is a multi functional discord bot made in node.js & discord.js/v14
 
