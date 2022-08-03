@@ -30,6 +30,7 @@ module.exports = {
 
             let output = result;
 
+            
             if (typeof result !== "string") {
                 output = inspect(result);
             }
