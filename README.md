@@ -38,3 +38,7 @@
 ## <a id="changelog"></a>💭 〢 ChangeLog
 
 =======
+
+<h2 align = "center">
+    Made with Love ❌ Code ✅
+</h2>
