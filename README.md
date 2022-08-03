@@ -11,7 +11,6 @@
 <h2 align="center">
   Gengar is a multi functional discord bot made in node.js & discord.js/v14
 
-  Made with Love ❌ Code ✅
 </h2>
 
 ## <a id="content"></a>🌐 〢 Content
