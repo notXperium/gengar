@@ -13,7 +13,6 @@
 
   Made with Love ❌ Code ✅
 </h2>
-<<<<<<< HEAD
 
 ## <a id="content"></a>🌐 〢 Content
 - [🔰・Features](#features)
@@ -39,4 +38,3 @@
 ## <a id="changelog"></a>💭 〢 ChangeLog
 
 =======
->>>>>>> 81e29618f6c6023e5a05c103ba7a7612d6ffdfa6
