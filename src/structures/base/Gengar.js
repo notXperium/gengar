@@ -214,6 +214,38 @@ module.exports = class Gengar extends dc.Client {
 
                     const data = await Misc.find();
 
+                    if(data[0].blacklistedUser.some(_ => _ === interaction.user.id)) 
+                    return interaction
+                    .reply({
+                        embeds: [
+                            this.embed("error")
+                                .setTitle("You are not allowed to run this command!")
+                                .setDescription(
+                                    `**You Are [blacklisted](${
+                                        this.utils.url.support
+                                    })! \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!**`
+                                )
+                        ],
+                        ephemeral: true
+                    })
+                    .catch(() => null);
+
+                    if(data[0].blacklistedGuild.some(_ => _ === interaction.guild.id)) 
+                    return interaction
+                    .reply({
+                        embeds: [
+                            this.embed("error")
+                                .setTitle("You are not allowed to run this command!")
+                                .setDescription(
+                                    `**This Guild is [blacklisted](${
+                                        this.utils.url.support
+                                    })! \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!**`
+                                )
+                        ],
+                        ephemeral: true
+                    })
+                    .catch(() => null);
+
                     if (cmd.devOnly && !data[0].team.some((_) => _ === interaction.user.id))
                         return interaction
                             .reply({
