@@ -214,7 +214,7 @@ module.exports = class Gengar extends dc.Client {
 
                     const data = await Misc.find();
 
-                    if(data[0].blacklistedUser.some(_ => _ === interaction.user.id)) 
+                    if(data[0].blacklistedUser.some(_ => _.id === interaction.user.id)) 
                     return interaction
                     .reply({
                         embeds: [
@@ -230,7 +230,7 @@ module.exports = class Gengar extends dc.Client {
                     })
                     .catch(() => null);
 
-                    if(data[0].blacklistedGuild.some(_ => _ === interaction.guild.id)) 
+                    if(data[0].blacklistedGuild.some(_ => _.id === interaction.guild.id)) 
                     return interaction
                     .reply({
                         embeds: [
@@ -246,7 +246,7 @@ module.exports = class Gengar extends dc.Client {
                     })
                     .catch(() => null);
 
-                    if (cmd.devOnly && !data[0].team.some((_) => _ === interaction.user.id))
+                    if (cmd.devOnly && !data[0].team.some(_ => _ === interaction.user.id))
                         return interaction
                             .reply({
                                 embeds: [
