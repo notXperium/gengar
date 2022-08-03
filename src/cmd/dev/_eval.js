@@ -28,7 +28,7 @@ module.exports = {
         try {
             const result = await eval(code);
 
-            let output = result  ;
+            let output = result;
 
             if (typeof result !== "string") {
                 output = inspect(result);
