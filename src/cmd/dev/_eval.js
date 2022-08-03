@@ -22,7 +22,7 @@ module.exports = {
 
         if (code.includes("env"))
             return interaction.reply({
-                embeds: [client.embed("error").setTitle("HAHA nice Try").setDescription("Imagine getting my token")]
+                embeds: [client.embed("error").setTitle("HAHA nice Try").setDescription("Imagine getting my secrets")]
             });
 
         try {
