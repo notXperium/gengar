@@ -26,7 +26,7 @@ module.exports = class Logger {
                 "]".white +
                 " [".white +
                 Colors.magenta.bold(lable.toUpperCase()) +
-                "] ".white +
+                "] » ".white +
                 Colors.white.bold(content)
         );
     };
@@ -43,7 +43,7 @@ module.exports = class Logger {
                 "]".white +
                 " [".white +
                 Colors.green.bold(lable.toUpperCase()) +
-                "] ".white +
+                "] » ".white +
                 Colors.white.bold(content)
         );
     };
@@ -60,7 +60,7 @@ module.exports = class Logger {
                 "]".white +
                 " [".white +
                 Colors.yellow.bold(lable.toUpperCase()) +
-                "] ".white +
+                "] » ".white +
                 Colors.white.bold(content)
         );
     };
@@ -77,7 +77,7 @@ module.exports = class Logger {
                 "]".white +
                 " [".white +
                 Colors.red.bold(lable.toUpperCase()) +
-                "] ".white +
+                "] » ".white +
                 Colors.white.bold(content)
         );
     };

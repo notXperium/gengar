@@ -1,3 +1,3 @@
 # Gengar Discord Bot
 
-multi functional discord bot 
+multi functional discord bot

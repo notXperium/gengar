@@ -52,25 +52,46 @@ module.exports = class Gengar extends dc.Client {
     config = Config;
 
     embed = (color) => {
-        const defaultEmbed = new dc.EmbedBuilder().setFooter({
-            text: this.user.username,
-            iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
-        });
-
-        if (!color) return defaultEmbed.setColor(this.utils.colors.normal);
-
         switch (color) {
             case "normal": {
-                return defaultEmbed.setColor(this.utils.colors.normal);
+                return new dc.EmbedBuilder()
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.normal);
             }
             case "error": {
-                return defaultEmbed.setColor(this.utils.colors.failed);
+                return new dc.EmbedBuilder()
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.failed);
             }
             case "debug": {
-                return defaultEmbed.setColor(this.utils.colors.dev);
+                return new dc.EmbedBuilder()
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.dev);
+            }
+            case "success": {
+                return new dc.EmbedBuilder()
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.success);
             }
             default: {
-                return defaultEmbed.setColor(this.utils.colors.normal);
+                return new dc.EmbedBuilder()
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.normal);
             }
         }
     };
@@ -214,39 +235,41 @@ module.exports = class Gengar extends dc.Client {
 
                     const data = await Misc.find();
 
-                    if(data[0].blacklistedUser.some(_ => _.id === interaction.user.id)) 
-                    return interaction
-                    .reply({
-                        embeds: [
-                            this.embed("error")
-                                .setTitle("You are not allowed to run this command!")
-                                .setDescription(
-                                    `**You Are [blacklisted](${
-                                        this.utils.url.support
-                                    })! \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!**`
-                                )
-                        ],
-                        ephemeral: true
-                    })
-                    .catch(() => null);
+                    if (
+                        data[0].blacklistedUser.some((_) => _.id === interaction.user.id) &&
+                        interaction.user.id != this.owner
+                    )
+                        return interaction
+                            .reply({
+                                embeds: [
+                                    this.embed("error")
+                                        .setTitle("You are not allowed to run this command!")
+                                        .setDescription(
+                                            `**You Are [blacklisted](${this.utils.url.support})!** \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!`
+                                        )
+                                ],
+                                ephemeral: true
+                            })
+                            .catch(() => null);
 
-                    if(data[0].blacklistedGuild.some(_ => _.id === interaction.guild.id)) 
-                    return interaction
-                    .reply({
-                        embeds: [
-                            this.embed("error")
-                                .setTitle("You are not allowed to run this command!")
-                                .setDescription(
-                                    `**This Guild is [blacklisted](${
-                                        this.utils.url.support
-                                    })! \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!**`
-                                )
-                        ],
-                        ephemeral: true
-                    })
-                    .catch(() => null);
+                    if (
+                        data[0].blacklistedGuild.some((_) => _.id === interaction.guild.id) &&
+                        !data[0].team.some((_) => _ === interaction.user.id)
+                    )
+                        return interaction
+                            .reply({
+                                embeds: [
+                                    this.embed("error")
+                                        .setTitle("You are not allowed to run this command!")
+                                        .setDescription(
+                                            `**This Guild is [blacklisted](${this.utils.url.support})!** \nJoin my Support [Discord](${this.utils.url.support}) if you think this is an mistake!!`
+                                        )
+                                ],
+                                ephemeral: true
+                            })
+                            .catch(() => null);
 
-                    if (cmd.devOnly && !data[0].team.some(_ => _ === interaction.user.id))
+                    if (cmd.devOnly && !data[0].team.some((_) => _ === interaction.user.id))
                         return interaction
                             .reply({
                                 embeds: [
@@ -262,7 +285,7 @@ module.exports = class Gengar extends dc.Client {
                             })
                             .catch(() => null);
 
-                    if (cmd.xperium && !interaction.user.id != this.owner)
+                    if (cmd.xperium && interaction.user.id != this.owner)
                         return interaction
                             .reply({
                                 embeds: [
@@ -290,7 +313,7 @@ module.exports = class Gengar extends dc.Client {
                 } catch (err) {
                     this.logger.error("commands", err);
 
-                    const ch = this.channels.cache.find((_) => _.id === this.config.channel.error);
+                    const ch = this.channels.cache.get(this.config.channels.error);
 
                     if (!ch) return;
 

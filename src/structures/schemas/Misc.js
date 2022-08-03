@@ -3,13 +3,13 @@ const { SchemaTypes, model, Schema } = require("mongoose");
 const MiscSchema = new Schema({
     team: SchemaTypes.Array,
     blacklistedUser: [
-        { 
+        {
             id: SchemaTypes.String,
             reason: SchemaTypes.String
         }
     ],
-    blacklistedGuild:  [
-        { 
+    blacklistedGuild: [
+        {
             id: SchemaTypes.String,
             reason: SchemaTypes.String
         }
