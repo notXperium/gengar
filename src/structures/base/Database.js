@@ -3,7 +3,7 @@ class Database {
     async createConnection(client) {
         const start = Date.now();
 
-        await connect("mongodb://localhost/discord", {
+        await connect(process.env.MONGO_URL, {
             keepAlive: true,
             useNewUrlParser: true,
             useUnifiedTopology: true
