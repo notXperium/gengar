@@ -18,7 +18,6 @@ module.exports = {
         const member = interaction.options.getMember("member") || interaction.member;
         const avatar = member.displayAvatarURL({ size: 4096, dynamic: true });
 
-        
         return interaction.reply({ 
             embeds: [
                 client.embed()

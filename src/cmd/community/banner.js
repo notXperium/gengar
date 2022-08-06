@@ -25,7 +25,6 @@ module.exports = {
             ], ephemeral: true
         });
 
-        
         return interaction.reply({ 
             embeds: [
                 client.embed()
