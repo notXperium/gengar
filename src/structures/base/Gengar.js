@@ -214,7 +214,10 @@ module.exports = class Gengar extends dc.Client {
         });
 
         this.on("interactionCreate", async (interaction) => {
-            if (!interaction.guild)
+
+            if (interaction.isChatInputCommand()) {
+
+                if (!interaction.guild)
                 return interaction
                     .reply({
                         embeds: [
@@ -225,8 +228,7 @@ module.exports = class Gengar extends dc.Client {
                         ephemeral: true
                     })
                     .catch(() => null);
-
-            if (interaction.isChatInputCommand()) {
+                    
                 const cmd = this.commands.get(interaction.commandName);
 
                 if (!cmd)
