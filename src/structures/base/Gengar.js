@@ -87,12 +87,12 @@ module.exports = class Gengar extends dc.Client {
             }
             case "loading": {
                 return new dc.EmbedBuilder()
-                .setDescription(`${this.utils.emojis.loading} Loading...`)
-                .setFooter({
-                    text: this.user.username,
-                    iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
-                })
-                .setColor(this.utils.colors.normal);
+                    .setDescription(`${this.utils.emojis.loading} Loading...`)
+                    .setFooter({
+                        text: this.user.username,
+                        iconURL: this.user.displayAvatarURL({ size: 4096, dynamic: true })
+                    })
+                    .setColor(this.utils.colors.normal);
             }
             default: {
                 return new dc.EmbedBuilder()
