@@ -155,7 +155,8 @@ module.exports = {
                                     .embed("success")
                                     .setTitle(`${guild.name} has been added to blacklist!`)
                                     .setDescription(
-                                        `**» Information: **\n **» Name:** ${guild.name} (\`${guild.id
+                                        `**» Information: **\n **» Name:** ${guild.name} (\`${
+                                            guild.id
                                         }\`)\n **» Reason:** ${reason} \n\n <t:${parseInt(Date.now() / 1000)}:R>`
                                     )
                             ]
@@ -188,7 +189,8 @@ module.exports = {
                                     .embed("success")
                                     .setTitle(`${user?.username} has been added to blacklist!`)
                                     .setDescription(
-                                        `**» Information: **\n **» Name:** ${user?.username ?? `<@${uid}>`} (\`${user?.id ?? uid
+                                        `**» Information: **\n **» Name:** ${user?.username ?? `<@${uid}>`} (\`${
+                                            user?.id ?? uid
                                         }\`)\n **» Reason:** ${reason} \n\n <t:${parseInt(Date.now() / 1000)}:R>`
                                     )
                             ]
@@ -231,7 +233,8 @@ module.exports = {
                                     .embed("success")
                                     .setTitle(`${guild?.name ?? "null"} has been removed from blacklist!`)
                                     .setDescription(
-                                        `**» Information: **\n **» Name:** ${guild?.name} (\`${guild?.id
+                                        `**» Information: **\n **» Name:** ${guild?.name} (\`${
+                                            guild?.id
                                         }\`) \n **» Reason:** ${reason} \n\n <t:${parseInt(Date.now() / 1000)}:R>`
                                     )
                             ]
@@ -263,14 +266,16 @@ module.exports = {
                                     .embed("success")
                                     .setTitle(`${user?.username} has been removed from blacklist!`)
                                     .setDescription(
-                                        `**» Information: **\n **» Name:** ${user?.username ?? `<@${uid}>`} (\`${user?.id ?? uid
+                                        `**» Information: **\n **» Name:** ${user?.username ?? `<@${uid}>`} (\`${
+                                            user?.id ?? uid
                                         }\`)\n **» Reason:** ${reason} \n\n <t:${parseInt(Date.now() / 1000)}:R>`
                                     )
                             ]
                         });
                     }
                 }
-            } case "list": {
+            }
+            case "list": {
                 const type = options.getNumber("type");
 
                 const d = await Misc.find();
@@ -279,50 +284,64 @@ module.exports = {
                     case 0: {
                         const cases = d[0].blacklistedGuild;
 
-                        if (!cases.length) return interaction.reply({
-                            embeds: [
-                                client.embed("debug")
-                                    .setTitle("No Cases Found!")
-                            ], ephemeral: true
-                        })
+                        if (!cases.length)
+                            return interaction.reply({
+                                embeds: [client.embed("debug").setTitle("No Cases Found!")],
+                                ephemeral: true
+                            });
 
-                        return interaction.reply({
-                            embeds: [
-                                client.embed()
-                                    .setTitle("Blacklisted Guilds")
-                                    .setThumbnail(client.user.displayAvatarURL({ size: 4096, dynamic: true }))
-                                    .setDescription(`${cases.map((_) => {
-                                        const guild = client.guilds.fetch(_.id).catch(() => null);
-                                        return `**» Name:** ${guild?.name ?? _.name} (\`${guild?.id ?? _.id}\`) \n **» Reason: ** ${_.reason ?? "unknown"}`
-                                    }).join(" \n")}`)
-                            ]
-                        }).catch(() => null);
+                        return interaction
+                            .reply({
+                                embeds: [
+                                    client
+                                        .embed()
+                                        .setTitle("Blacklisted Guilds")
+                                        .setThumbnail(client.user.displayAvatarURL({ size: 4096, dynamic: true }))
+                                        .setDescription(
+                                            `${cases
+                                                .map((_) => {
+                                                    const guild = client.guilds.fetch(_.id).catch(() => null);
+                                                    return `**» Name:** ${guild?.name ?? _.name} (\`${
+                                                        guild?.id ?? _.id
+                                                    }\`) \n **» Reason: ** ${_.reason ?? "unknown"}`;
+                                                })
+                                                .join(" \n")}`
+                                        )
+                                ]
+                            })
+                            .catch(() => null);
                     }
                     case 1: {
                         const cases = d[0].blacklistedUser;
 
-                        if (!cases.length) return interaction.reply({
-                            embeds: [
-                                client.embed("debug")
-                                    .setTitle("No Cases Found!")
-                            ], ephemeral: true
-                        })
+                        if (!cases.length)
+                            return interaction.reply({
+                                embeds: [client.embed("debug").setTitle("No Cases Found!")],
+                                ephemeral: true
+                            });
 
-                        return interaction.reply({
-                            embeds: [
-                                client.embed()
-                                    .setTitle("Blacklisted User")
-                                    .setThumbnail(client.user.displayAvatarURL({ size: 4096, dynamic: true }))
-                                    .setDescription(`${cases.map((_) => {
-                                        const user = client.users.cache.get(_.id);
-                                        return `**» Name:** ${user?.name ?? `<@${_.id}>`} (\`${user?.id ?? _.id}\`) \n **» Reason: ** ${_.reason ?? "unknown"}`
-                                    }).join(" \n")}`)
-                            ]
-                        }).catch(() => null)
+                        return interaction
+                            .reply({
+                                embeds: [
+                                    client
+                                        .embed()
+                                        .setTitle("Blacklisted User")
+                                        .setThumbnail(client.user.displayAvatarURL({ size: 4096, dynamic: true }))
+                                        .setDescription(
+                                            `${cases
+                                                .map((_) => {
+                                                    const user = client.users.cache.get(_.id);
+                                                    return `**» Name:** ${user?.name ?? `<@${_.id}>`} (\`${
+                                                        user?.id ?? _.id
+                                                    }\`) \n **» Reason: ** ${_.reason ?? "unknown"}`;
+                                                })
+                                                .join(" \n")}`
+                                        )
+                                ]
+                            })
+                            .catch(() => null);
                     }
                 }
-
-
             }
         }
     }

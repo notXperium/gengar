@@ -1,4 +1,4 @@
-const {CommandType, CommandOptionType} = require("../../structures");
+const { CommandType, CommandOptionType } = require("../../structures");
 
 module.exports = {
     name: "avatar",
@@ -14,17 +14,17 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: (interaction, client) => {
-
         const member = interaction.options.getMember("member") || interaction.member;
         const avatar = member.displayAvatarURL({ size: 4096, dynamic: true });
 
-        return interaction.reply({ 
+        return interaction.reply({
             embeds: [
-                client.embed()
-                .setTitle(`${member.user.username}\`s Avatar`)
-                .setDescription(`**[Avatar](${avatar})**`)
-                .setImage(avatar)
+                client
+                    .embed()
+                    .setTitle(`${member.user.username}\`s Avatar`)
+                    .setDescription(`**[Avatar](${avatar})**`)
+                    .setImage(avatar)
             ]
-        })
+        });
     }
-}
+};

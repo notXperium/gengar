@@ -1,4 +1,4 @@
-const {CommandType, CommandOptionType} = require("../../structures");
+const { CommandType, CommandOptionType } = require("../../structures");
 
 module.exports = {
     name: "banner",
@@ -14,24 +14,23 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: async (interaction, client) => {
-
         const member = interaction.options.getMember("member") || interaction.member;
         const banner = (await member.user.fetch()).bannerURL({ dynamic: true, size: 4096 });
 
-        if(!banner) return interaction.reply({
-            embeds: [
-                client.embed("error")
-                .setDescription(`**${member.user.tag} has no banner!**`)
-            ], ephemeral: true
-        });
+        if (!banner)
+            return interaction.reply({
+                embeds: [client.embed("error").setDescription(`**${member.user.tag} has no banner!**`)],
+                ephemeral: true
+            });
 
-        return interaction.reply({ 
+        return interaction.reply({
             embeds: [
-                client.embed()
-                .setTitle(`${member.user.username}\`s Banner`)
-                .setDescription(`**[Banner](${banner})**`)
-                .setImage(banner)
+                client
+                    .embed()
+                    .setTitle(`${member.user.username}\`s Banner`)
+                    .setDescription(`**[Banner](${banner})**`)
+                    .setImage(banner)
             ]
-        })
+        });
     }
-}
+};

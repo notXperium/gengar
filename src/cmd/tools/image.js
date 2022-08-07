@@ -22,7 +22,6 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: async (interaction, client) => {
-
         const { options } = interaction;
 
         const sub = options.getSubcommand();
@@ -31,10 +30,10 @@ module.exports = {
             case "facts": {
                 const fact = options.getString("text");
 
-                const image = new AttachmentBuilder(`https://api.popcat.xyz/facts?text=${fact}`, {name: "fact.png"})
+                const image = new AttachmentBuilder(`https://api.popcat.xyz/facts?text=${fact}`, { name: "fact.png" });
 
-               return interaction.reply({files: [image]})
+                return interaction.reply({ files: [image] });
             }
         }
     }
-}
+};
