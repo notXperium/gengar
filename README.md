@@ -14,14 +14,14 @@
 </h2>
 
 ## <a id="content"></a>🌐 〢 Content
-- [🔰・Features](#features)
-- [🌌・Support](https://discord.gg/urj2yRH2W7)
-- [🌐・Invite](https://discord.com/api/oauth2/authorize?client_id=978607530362163201&permissions=8&scope=bot%20applications.commands)
-- [📝・Changelog](#changelog)
 
-
+-   [🔰・Features](#features)
+-   [🌌・Support](https://discord.gg/urj2yRH2W7)
+-   [🌐・Invite](https://discord.com/api/oauth2/authorize?client_id=978607530362163201&permissions=8&scope=bot%20applications.commands)
+-   [📝・Changelog](#changelog)
 
 ## <a id="features"></a>🔰 〢 Features
+
 ```
 > Moderation
 > Leveling
