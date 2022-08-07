@@ -18,22 +18,22 @@ module.exports = {
 
         const random = Math.floor(Math.random() * (100 - 0) + 0);
 
-        interaction.reply({
-            embeds: [
-                client.embed("loading")
-            ]
-        }).then(() => {
-            setTimeout(() => {
-
-                interaction.editReply({
-                    embeds: [
-                        client.embed()
-                            .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 4096 }))
-                            .setTitle("Gay Percentage")
-                            .setDescription(`\n**:rainbow_flag: ${member.user.username} is ${random}% gay!**`)
-                    ]
-                })
-            }, 1000)
-        })
+        interaction
+            .reply({
+                embeds: [client.embed("loading")]
+            })
+            .then(() => {
+                setTimeout(() => {
+                    interaction.editReply({
+                        embeds: [
+                            client
+                                .embed()
+                                .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 4096 }))
+                                .setTitle("Gay Percentage")
+                                .setDescription(`\n**:rainbow_flag: ${member.user.username} is ${random}% gay!**`)
+                        ]
+                    });
+                }, 1000);
+            });
     }
-}
+};

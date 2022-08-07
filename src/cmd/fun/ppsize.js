@@ -18,22 +18,22 @@ module.exports = {
 
         const random = Math.floor(Math.random() * (30 - 2) + 2);
 
-        interaction.reply({
-            embeds: [
-                client.embed("loading")
-            ]
-        }).then(() => {
-            setTimeout(() => {
-
-                interaction.editReply({
-                    embeds: [
-                        client.embed()
-                            .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 4096 }))
-                            .setTitle("PP Size")
-                            .setDescription(`\n** ${member.user.username}\`s pp is ${random}cm long!**`)
-                    ]
-                })
-            }, 1000)
-        })
+        interaction
+            .reply({
+                embeds: [client.embed("loading")]
+            })
+            .then(() => {
+                setTimeout(() => {
+                    interaction.editReply({
+                        embeds: [
+                            client
+                                .embed()
+                                .setThumbnail(member.displayAvatarURL({ dynamic: true, size: 4096 }))
+                                .setTitle("PP Size")
+                                .setDescription(`\n** ${member.user.username}\`s pp is ${random}cm long!**`)
+                        ]
+                    });
+                }, 1000);
+            });
     }
-}
+};

@@ -63,12 +63,14 @@ module.exports = {
 **\`»\` Verification:** ${security[guild.verificationLevel]}  \n\n **<:reply:1005526903647653988>  Roles [${
                     roleArray.length
                 }]:**
-${roleArray
-    .slice(0, 10)
-    .map((r) => {
-        return `<@&${r}>`;
-    })
-    .join(", ")}
+${
+    roleArray.length === 0
+        ? "None"
+        : roleArray
+              .slice(0, 10)
+              .map((r) => `<@&${r}>`)
+              .join(" ,")
+}
 `)
             ]
         });
