@@ -1,3 +1,4 @@
+const GuildSchema = require("../../structures/schemas/Guild");
 const dc = require("discord.js");
 
 /**
@@ -6,7 +7,22 @@ const dc = require("discord.js");
 module.exports = {
     name: "guildCreate",
 
-    run: (guild, client) => {
+    run: async (guild, client) => {
+
+        const data = await GuildSchema.find({id: guild.id});
+        if(!data[0]) await GuildSchema.create({
+            id: guild.id,
+            name: guild.name,
+            ticketSystem: {
+                category: null,
+                transcript: null,
+                create: null,
+                role: null,
+                count: null
+            },
+            tickets: []
+        });
+
         const ch = guild.channels.cache.get(guild.systemChannelId);
         if (!ch) return;
 
