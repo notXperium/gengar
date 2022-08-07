@@ -20,7 +20,7 @@ module.exports = class Brain {
 
         const langData = await detcted.detect(input);
 
-        const lang = langData[0].language;
+        const lang = langData[0]?.language;
 
         if (lang != "en") input = await Translator(input, { from: lang, to: "en" });
 
