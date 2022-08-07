@@ -214,21 +214,19 @@ module.exports = class Gengar extends dc.Client {
         });
 
         this.on("interactionCreate", async (interaction) => {
-
             if (interaction.isChatInputCommand()) {
-
                 if (!interaction.guild)
-                return interaction
-                    .reply({
-                        embeds: [
-                            this.embed("error")
-                                .setTitle("You cannot use my commands here!")
-                                .setDescription("Please only use my commands in a  Server!")
-                        ],
-                        ephemeral: true
-                    })
-                    .catch(() => null);
-                    
+                    return interaction
+                        .reply({
+                            embeds: [
+                                this.embed("error")
+                                    .setTitle("You cannot use my commands here!")
+                                    .setDescription("Please only use my commands in a  Server!")
+                            ],
+                            ephemeral: true
+                        })
+                        .catch(() => null);
+
                 const cmd = this.commands.get(interaction.commandName);
 
                 if (!cmd)
