@@ -94,7 +94,7 @@ module.exports = {
                               .join(" ,")
                 }
 
-\n\n **<:reply:1005526903647653988>  Server:** 
+**<:reply:1005526903647653988>  Server:** 
 **\`»\` Joined:** <t:${parseInt(member.joinedAt / 1000)}:R>
 **\`»\` Nickname:** ${member.nickname ? member.nickname : "N/A"}
 **\`»\` Booster:** ${member.premiumSinceTimestamp ? "Yes" : "No"}
