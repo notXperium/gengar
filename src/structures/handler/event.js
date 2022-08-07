@@ -8,8 +8,10 @@ module.exports = async (client) => {
     paths.map(async (_) => {
         const event = require(_);
 
-        if (!event.name || !Events.includes(event?.name))
-            return client.logger.warn("event", `invalid event name at ${_}!`);
+        if (!event.name || !Events.includes(event?.name)) {
+            client.logger.warn("event", `invalid event name at ${_}!`);
+            process.exit();
+        }
 
         event.dir = _;
 
