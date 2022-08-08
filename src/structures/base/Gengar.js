@@ -145,7 +145,7 @@ module.exports = class Gengar extends dc.Client {
             const handler = fs.readdirSync("./src/structures/handler");
 
             handler.forEach((_) => {
-                require(`../handler/${_}`)(this);
+                require(`../handler/${_}`)(this, PG);
             });
 
             if (handler.length)
@@ -297,8 +297,7 @@ module.exports = class Gengar extends dc.Client {
                                     this.embed("error")
                                         .setTitle("You are not allowed to run this command!")
                                         .setDescription(
-                                            `**Only [${this.user.username.toUpperCase()}](${
-                                                this.utils.url.support
+                                            `**Only [${this.user.username.toUpperCase()}](${this.utils.url.support
                                             }) Developers are allowed to run this command!**`
                                         )
                                 ],
@@ -353,6 +352,36 @@ module.exports = class Gengar extends dc.Client {
                     } else {
                         this.logger.error("command", err);
                     }
+                }
+            }
+            if (interaction.isButton()) {
+                const button = this.buttons.get(interaction.customId);
+
+                if (!button) return interaction.reply({
+                    embeds: [
+                        this.embed("error")
+                            .setTitle("Invalid Button")
+                            .setDescription("This Button is not a valid Button!\n*Please try again later!*")
+                    ],
+                    ephemeral: true
+                });
+
+                if(button.permission && !interaction.member.permissions.has(button.permission)) return interaction
+                .reply({
+                    embeds: [
+                        this.embed("error")
+                            .setTitle("You are not allowed to use this button!")
+                            .setDescription(`Missing Permission: \`${button.permission}\``)
+                    ],
+                    ephemeral: true
+                })
+                .catch(() => null);
+
+                try {
+
+                    button.run(interaction, this)
+                } catch(e) {
+                    console.error(e)
                 }
             }
         });
