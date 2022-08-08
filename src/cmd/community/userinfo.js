@@ -42,7 +42,7 @@ module.exports = {
 
         const status = member.presence.status
             .replace("online", "<:icons_dgreen:994544919714742342> Online")
-            .replace("idle", "<:emoji:1005841778064244877>")
+            .replace("idle", "<:emoji:1005841778064244877> Idle")
             .replace("dnd", "<:icons_dred:994544928698945597> Do Not Disturb")
             .replace("offline", "<:offline:974221638457495612> Offline");
 
