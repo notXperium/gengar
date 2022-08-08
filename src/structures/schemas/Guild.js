@@ -15,7 +15,8 @@ const GuildSchema = new Schema({
     tickets: [
         {
             channel: SchemaTypes.String,
-            user: SchemaTypes.String
+            user: SchemaTypes.String,
+            locked: SchemaTypes.Boolean
         }
     ]
 });
