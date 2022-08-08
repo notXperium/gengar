@@ -39,8 +39,6 @@ module.exports = {
             return;
         }
 
-        const url = `https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=8&scope=bot%20applications.commands`;
-
         ch.send({
             embeds: [
                 client
@@ -57,5 +55,24 @@ module.exports = {
                 )
             ]
         });
+
+        const log = client.channels.cache.get(client.config.channels.log);
+
+        if (log)
+            log.send({
+                embeds: [
+                    client
+                        .embed("debug")
+                        .setTitle("Server added!")
+                        .setThumbnail(guild.iconURL({ dynamic: true, size: 4096 })).setDescription(`
+**\`»\` Name:** ${guild.name} (\`${guild.id}\`)
+**\`»\` Owner:** <@${guild.ownerId}>
+**\`»\` Members:** ${guild.members.cache.size}
+
+**\`»\` Created:** <t:${parseInt(guild.createdTimestamp / 1000)}:R>
+**\`»\` Joined:** <t:${parseInt(Date.now() / 1000)}:R>
+                `)
+                ]
+            });
     }
 };
