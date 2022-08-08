@@ -1,0 +1,41 @@
+button {
+    text-decoration: none;
+    font-family: "Roboto Mono", monospace;
+}
+
+.invite {
+    font-size: 18px;
+    border-width: 0px;
+    border-color: var(--primary);
+    border-radius: 20px;
+    background-color: var(--primary);
+    /* margin-left: 64px; */
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.invite:hover {
+    background-color: #944cca;
+}
+
+.discord_invite {
+    font-size: 18px;
+    border-width: 0px;
+    border-color: var(--primary);
+    border-radius: 20px;
+    background-color: var(--primary);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: 64px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.discord_invite:hover {
+    background-color: #944cca;
+}

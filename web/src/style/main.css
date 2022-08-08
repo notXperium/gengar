@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+:root {
+    --primary: #ad5cec;
+    --light: #eeeeee;
+    --dark: #2f303a;
+    --lightdark: #6e6e71;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-color: var(--dark);
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--dark);
+    background-size: cover;
+}
+
+.gengar {
+    margin-top: 10vh;
+    /* margin-left: 40px; */
+    padding-top: 10vh;
+    padding-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gengarpfp {
+    /* border-color: #a0a3a8;
+    border-style: solid;
+    border-width: 5px; */
+    max-width: 50vh;
+    border-radius: 50%;
+    box-shadow: var(--primary) 0px 8px 16px;
+}
+
+.geng_text {
+    font-family: "Anton";
+    font-size: 48px;
+    margin-top: 10px;
+    /* margin-left: 38px; */
+}
+
+.discord {
+    /* margin-top: 80px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.discord_title {
+    margin-left: 95px;
+    margin-bottom: 30px;
+    font-family: "Anton", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.about-icons {
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.icons {
+    width: 10px;
+}
