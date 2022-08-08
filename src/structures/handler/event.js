@@ -1,9 +1,6 @@
 const { Events } = require("../misc/validation");
-const { promisify } = require("util");
-const { glob } = require("glob");
-const PG = promisify(glob);
 
-module.exports = async (client) => {
+module.exports = async (client, PG) => {
     const paths = await PG(`${process.cwd()}/src/events/**/*.js`);
     paths.map(async (_) => {
         const event = require(_);
