@@ -21,7 +21,7 @@ module.exports = {
     ],
     type: CommandType.ChatInput,
 
-    run: async (interaction, client) => {
+    run: async (interaction) => {
         const { options } = interaction;
 
         const sub = options.getSubcommand();

@@ -1,5 +1,6 @@
 const Brain = require("../../structures/utilities/Brain");
 const Schema = require("../../structures/schemas/Guild");
+const axios = require("axios");
 
 module.exports = {
     name: "messageCreate",
@@ -57,22 +58,21 @@ module.exports = {
 
             const userRanking = data.ranking.filter(_ => _.user === message.author.id);
 
-            if (!userRanking.length) {
-                await Schema.updateOne({ id: message.guild.id }, {
-                    $push: {
-                        ranking: {
-                            user: message.author.id,
-                            level: 1,
-                            required: multiplier - random,
-                            xp: random,
-                            fullXp: random,
-                        }
+            if (!userRanking.length) return await Schema.updateOne({ id: message.guild.id }, {
+                $push: {
+                    ranking: {
+                        user: message.author.id,
+                        level: 1,
+                        required: multiplier - random,
+                        xp: random,
+                        fullXp: random,
                     }
-                })
-            }
+                }
+            })
+
 
             const { user, level, xp, fullXp, required } = userRanking[0]
-            
+
             const next = level * multiplier;
 
             if ((xp + random) >= next) {
@@ -123,7 +123,7 @@ module.exports = {
                 })
             } else {
                 await Schema.updateOne({ id: message.guild.id }, {
-                    $pull : {
+                    $pull: {
                         ranking: {
                             user: message.author.id
                         }
@@ -131,7 +131,7 @@ module.exports = {
                 })
 
                 await Schema.updateOne({ id: message.guild.id }, {
-                    $push : {
+                    $push: {
                         ranking: {
                             user: message.author.id,
                             level: level,
