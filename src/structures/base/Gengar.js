@@ -106,6 +106,7 @@ module.exports = class Gengar extends dc.Client {
     };
 
     async start(status) {
+
         let token, guild, id;
 
         switch (status) {

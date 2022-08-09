@@ -1,21 +1,27 @@
+const Logger = require("./Logger")
+
 class Utils {
-    text = {
-        split(text) {
-            return text
-                .split("_")
-                .map((_) => _[0].toUpperCase() + _.slice(1).toLowerCase())
-                .join(" ");
-        },
 
-        beautify(value, beautify = true) {
-            if (beautify) return this.split(value.replace(/ /g, "_"));
-            return value.replace(/ /g, "_").toLowerCase();
-        },
+    split(text) {
+        return text
+            .split("_")
+            .map((_) => _[0].toUpperCase() + _.slice(1).toLowerCase())
+            .join(" ");
+    }
 
-        format(x) {
-            return `${x[0].toUpperCase()}${x.slice(1).toLowerCase()}`;
-        }
-    };
+    beautify(value, beautify = true) {
+        if (beautify) return this.split(value.replace(/ /g, "_"));
+        return value.replace(/ /g, "_").toLowerCase();
+    }
+
+    format(x) {
+        return `${x[0].toUpperCase()}${x.slice(1).toLowerCase()}`;
+    }
+
+    formatNumber(x) {
+        if(!typeof x === "number") return new Logger().warn("formatNumber", "invalid number!");
+        return x.toLocaleString("en-US", { maximumFractionDigits: 2 });
+    }
 
     utils = {
         colors: {

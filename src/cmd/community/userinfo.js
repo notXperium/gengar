@@ -26,8 +26,8 @@ module.exports = {
         } else {
             devices = member.presence.clientStatus
                 ? Object.entries(member.presence.clientStatus)
-                      .map((device) => device[0][0].toUpperCase() + device[0].substring(1))
-                      .join(", ")
+                    .map((device) => device[0][0].toUpperCase() + device[0].substring(1))
+                    .join(", ")
                 : null;
         }
 
@@ -48,15 +48,16 @@ module.exports = {
 
         const emoji = [
             { name: "Staff", emoji: "<:diamond:1005841770711629874>" },
-            { name: "CertifiedModerator", emoji: "<:moderator:1005841772074766366>" },
-            { name: "Partner", emoji: "<:discordpartner:1005845069321998376>" },
             { name: "Hypesquad", emoji: "<:hype:1005841776621396039>" },
-            { name: "HypeSquadOnlineHouse1", emoji: "<:bravey:1005841775149191178>" },
-            { name: "HypeSquadOnlineHouse2", emoji: "<:brilliance:1005843346952040549>" },
-            { name: "HypeSquadOnlineHouse3", emoji: "<:balance:1005843802092744814>" },
+            { name: "Partner", emoji: "<:discordpartner:1005845069321998376>" },
             { name: "VerifiedDeveloper", emoji: "<:botDev:950772182479433728>" },
-            { name: "PremiumEarlySupporter", emoji: "<:support:1005846951432028160>" }
+            { name: "CertifiedModerator", emoji: "<:moderator:1005841772074766366>" },
+            { name: "HypeSquadOnlineHouse1", emoji: "<:bravey:1005841775149191178>" },
+            { name: "HypeSquadOnlineHouse3", emoji: "<:balance:1005843802092744814>" },
+            { name: "PremiumEarlySupporter", emoji: "<:support:1005846951432028160>" },
+            { name: "HypeSquadOnlineHouse2", emoji: "<:brilliance:1005843346952040549>" }
         ];
+
         const flags = [...new Set(member.user.flags)];
         let badges = [];
         emoji.forEach((e) => {
@@ -69,43 +70,39 @@ module.exports = {
                     .embed()
                     .setAuthor({ name: `${member.user.username} | Information`, iconURL: avatar })
                     .setThumbnail(avatar)
-                    .setImage(banner).setDescription(`**<:reply:1005526903647653988> General:** \n **\`»\` Name:** <@${
-                    member.user.id
-                }> (\`${member.user.id}\`)
+                    .setImage(banner).setDescription(`**<:reply:1005526903647653988> General:** \n **\`»\` Name:** <@${member.user.id
+                        }> (\`${member.user.id}\`)
 **\`»\` Tag:** ${member.user.tag}
 **\`»\` Created:** <t:${parseInt(member.user.createdTimestamp / 1000)}:R>
 **\`»\` Status:**  ${status ?? "unknown"} \n\n **<:reply:1005526903647653988>  Other:** 
 **\`»\` Avatar:** [Avatar URL](${avatar})
-**\`»\` Device:** ${
-                    devices
-                        ? devices
-                              .replace("Web", "<:website:973996696176590938> Web")
-                              .replace("Mobile", "<:mobile:973996696029769802> Mobile")
-                              .replace("Desktop", "<:desk:973996696004624415> Desktop")
-                        : "None"
-                }
+**\`»\` Device:** ${devices
+                            ? devices
+                                .replace("Web", "<:website:973996696176590938> Web")
+                                .replace("Mobile", "<:mobile:973996696029769802> Mobile")
+                                .replace("Desktop", "<:desk:973996696004624415> Desktop")
+                            : "None"
+                        }
 **\`»\` Activity:** ${activity?.name ? activity.name : "None"} 
-**\`»\` Badges:** ${
-                    !badges.length
-                        ? "None"
-                        : badges
-                              .slice(0, 10)
-                              .map((b) => b)
-                              .join(" ,")
-                }
+**\`»\` Badges:** ${!badges.length
+                            ? "None"
+                            : badges
+                                .slice(0, 10)
+                                .map((b) => b)
+                                .join(" ,")
+                        }
 
 **<:reply:1005526903647653988>  Server:** 
 **\`»\` Joined:** <t:${parseInt(member.joinedAt / 1000)}:R>
 **\`»\` Nickname:** ${member.nickname ? member.nickname : "N/A"}
 **\`»\` Booster:** ${member.premiumSinceTimestamp ? "Yes" : "No"}
 **\`»\` Highest Role:** ${member.roles.cache.size > 1 ? `<@&${member.roles.highest.id}>` : "None"}
-**\`»\` Roles [${Roles.length}]:** ${
-                    Roles.length === 0
-                        ? "None"
-                        : Roles.slice(0, 10)
-                              .map((r) => `<@&${r}>`)
-                              .join(" ,")
-                }
+**\`»\` Roles [${Roles.length}]:** ${Roles.length === 0
+                            ? "None"
+                            : Roles.slice(0, 10)
+                                .map((r) => `<@&${r}>`)
+                                .join(" ,")
+                        }
                     `)
             ]
         });
