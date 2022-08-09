@@ -20,7 +20,13 @@ module.exports = {
                     role: null,
                     count: null
                 },
-                tickets: []
+                tickets: [],
+
+                ranking: [],
+
+                channels: {
+                    ranking : null
+                }
             });
 
         const ch = guild.channels.cache.get(guild.systemChannelId);

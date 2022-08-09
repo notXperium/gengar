@@ -18,7 +18,21 @@ const GuildSchema = new Schema({
             user: SchemaTypes.String,
             locked: SchemaTypes.Boolean
         }
-    ]
+    ],
+
+    ranking: [
+        {
+            user: SchemaTypes.String,
+            level: SchemaTypes.Number,
+            required: SchemaTypes.Number,
+            xp: SchemaTypes.Number,
+            fullXp: SchemaTypes.Number
+        }
+    ],
+    
+    channels: {
+        ranking: SchemaTypes.String || null
+    }
 });
 
 module.exports = model("guild", GuildSchema);
