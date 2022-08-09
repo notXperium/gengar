@@ -1,4 +1,4 @@
-node_modules/
-.env
 .prettierignore
+node_modules/
 .prettierrc
+.env
