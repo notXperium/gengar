@@ -1,7 +1,6 @@
-const Logger = require("./Logger")
+const Logger = require("./Logger");
 
 class Utils {
-
     split(text) {
         return text
             .split("_")
@@ -19,7 +18,7 @@ class Utils {
     }
 
     formatNumber(x) {
-        if(!typeof x === "number") return new Logger().warn("formatNumber", "invalid number!");
+        if (!typeof x === "number") return new Logger().warn("formatNumber", "invalid number!");
         return x.toLocaleString("en-US", { maximumFractionDigits: 2 });
     }
 

@@ -29,7 +29,7 @@ const GuildSchema = new Schema({
             fullXp: SchemaTypes.Number
         }
     ],
-    
+
     channels: {
         ranking: SchemaTypes.String || null
     }
