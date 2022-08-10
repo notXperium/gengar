@@ -338,7 +338,7 @@ module.exports = class Ticket {
                 ephemeral: true
             });
 
-        const userTickets = data[0].tickets.filter(_ => _.user === interaction.user.id);
+        const userTickets = data[0].tickets.filter((_) => _.user === interaction.user.id);
 
         const ch = guild.channels.cache.get(userTickets[0]?.channel);
 
