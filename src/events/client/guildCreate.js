@@ -25,7 +25,7 @@ module.exports = {
                 ranking: [],
 
                 channels: {
-                    ranking : null
+                    ranking: null
                 }
             });
 
