@@ -26,8 +26,8 @@ module.exports = {
         } else {
             devices = member.presence.clientStatus
                 ? Object.entries(member.presence.clientStatus)
-                    .map((device) => device[0][0].toUpperCase() + device[0].substring(1))
-                    .join(", ")
+                      .map((device) => device[0][0].toUpperCase() + device[0].substring(1))
+                      .join(", ")
                 : null;
         }
 
@@ -70,39 +70,43 @@ module.exports = {
                     .embed()
                     .setAuthor({ name: `${member.user.username} | Information`, iconURL: avatar })
                     .setThumbnail(avatar)
-                    .setImage(banner).setDescription(`**<:reply:1005526903647653988> General:** \n **\`»\` Name:** <@${member.user.id
-                        }> (\`${member.user.id}\`)
+                    .setImage(banner).setDescription(`**<:reply:1005526903647653988> General:** \n **\`»\` Name:** <@${
+                    member.user.id
+                }> (\`${member.user.id}\`)
 **\`»\` Tag:** ${member.user.tag}
 **\`»\` Created:** <t:${parseInt(member.user.createdTimestamp / 1000)}:R>
 **\`»\` Status:**  ${status ?? "unknown"} \n\n **<:reply:1005526903647653988>  Other:** 
 **\`»\` Avatar:** [Avatar URL](${avatar})
-**\`»\` Device:** ${devices
-                            ? devices
-                                .replace("Web", "<:website:973996696176590938> Web")
-                                .replace("Mobile", "<:mobile:973996696029769802> Mobile")
-                                .replace("Desktop", "<:desk:973996696004624415> Desktop")
-                            : "None"
-                        }
+**\`»\` Device:** ${
+                    devices
+                        ? devices
+                              .replace("Web", "<:website:973996696176590938> Web")
+                              .replace("Mobile", "<:mobile:973996696029769802> Mobile")
+                              .replace("Desktop", "<:desk:973996696004624415> Desktop")
+                        : "None"
+                }
 **\`»\` Activity:** ${activity?.name ? activity.name : "None"} 
-**\`»\` Badges:** ${!badges.length
-                            ? "None"
-                            : badges
-                                .slice(0, 10)
-                                .map((b) => b)
-                                .join(" ,")
-                        }
+**\`»\` Badges:** ${
+                    !badges.length
+                        ? "None"
+                        : badges
+                              .slice(0, 10)
+                              .map((b) => b)
+                              .join(" ,")
+                }
 
 **<:reply:1005526903647653988>  Server:** 
 **\`»\` Joined:** <t:${parseInt(member.joinedAt / 1000)}:R>
 **\`»\` Nickname:** ${member.nickname ? member.nickname : "N/A"}
 **\`»\` Booster:** ${member.premiumSinceTimestamp ? "Yes" : "No"}
 **\`»\` Highest Role:** ${member.roles.cache.size > 1 ? `<@&${member.roles.highest.id}>` : "None"}
-**\`»\` Roles [${Roles.length}]:** ${Roles.length === 0
-                            ? "None"
-                            : Roles.slice(0, 10)
-                                .map((r) => `<@&${r}>`)
-                                .join(" ,")
-                        }
+**\`»\` Roles [${Roles.length}]:** ${
+                    Roles.length === 0
+                        ? "None"
+                        : Roles.slice(0, 10)
+                              .map((r) => `<@&${r}>`)
+                              .join(" ,")
+                }
                     `)
             ]
         });
