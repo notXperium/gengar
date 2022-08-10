@@ -3,6 +3,7 @@ const { SchemaTypes, model, Schema } = require("mongoose");
 const GuildSchema = new Schema({
     id: SchemaTypes.String,
     name: SchemaTypes.String,
+    premium: { type: SchemaTypes.Boolean, default: false },
 
     ticketSystem: {
         category: SchemaTypes.String || null,

@@ -3,6 +3,8 @@ const Logger = require("../utilities/Logger");
 const { REST } = require("@discordjs/rest");
 const Utils = require("../utilities/Utils");
 const { blue, white } = require("colors");
+const Guild = require("../schemas/Guild");
+const User = require("../schemas/User");
 const Misc = require("../schemas/Misc");
 const Database = require("./Database");
 const { promisify } = require("util");
@@ -257,7 +259,7 @@ module.exports = class Gengar extends dc.Client {
                     const data = await Misc.find();
 
                     if (
-                        data[0].blacklistedUser.some((_) => _.id === interaction.user.id) &&
+                        data[0]?.blacklistedUser.some((_) => _.id === interaction.user.id) &&
                         interaction.user.id != this.owner
                     )
                         return interaction
@@ -274,8 +276,8 @@ module.exports = class Gengar extends dc.Client {
                             .catch(() => null);
 
                     if (
-                        data[0].blacklistedGuild.some((_) => _.id === interaction.guild.id) &&
-                        !data[0].team.some((_) => _ === interaction.user.id)
+                        data[0]?.blacklistedGuild.some((_) => _.id === interaction.guild.id) &&
+                        !data[0]?.team.some((_) => _ === interaction.user.id)
                     )
                         return interaction
                             .reply({
@@ -290,15 +292,36 @@ module.exports = class Gengar extends dc.Client {
                             })
                             .catch(() => null);
 
-                    if (cmd.devOnly && !data[0].team.some((_) => _ === interaction.user.id))
+                    const res = await Guild.find({ id: interaction.guild.id });
+                    const userRes = await User.find({ id: interaction.user.id });
+
+                    if (!userRes) await User.create({ id: interaction.user.id });
+
+                    const premium = !res[0].premium && (!userRes[0]?.premium ?? false)
+
+                    if (cmd.premium && premium) return interaction
+                        .reply({
+                            embeds: [
+                                this.embed("error")
+                                    .setDescription(
+                                        `**This is a Premium only command!** \n\n[Get Premium](${this.utils.url.support})`
+                                    )
+                                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096}))
+                            ],
+                            ephemeral: true
+                        })
+                        .catch(() => null);
+
+
+
+                    if (cmd.devOnly && !data[0]?.team.some((_) => _ === interaction.user.id))
                         return interaction
                             .reply({
                                 embeds: [
                                     this.embed("error")
                                         .setTitle("You are not allowed to run this command!")
                                         .setDescription(
-                                            `**Only [${this.user.username.toUpperCase()}](${
-                                                this.utils.url.support
+                                            `**Only [${this.user.username.toUpperCase()}](${this.utils.url.support
                                             }) Developers are allowed to run this command!**`
                                         )
                                 ],
