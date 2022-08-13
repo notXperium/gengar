@@ -28,7 +28,7 @@ module.exports = {
             }, 40000);
         }
 
-        new Brain().say(message).catch(() => null);
+        // new Brain().say(message).catch(() => null);
 
         const data =
             (await Schema.findOne({ id: message.guild.id })) ||
