@@ -49,7 +49,10 @@ module.exports = {
                 ranking: [],
 
                 channels: {
-                    ranking: null
+                    ranking: null,
+                    general: null,
+                    voice: null,
+                    moderation: null
                 }
             }));
 

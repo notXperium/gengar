@@ -27,9 +27,14 @@ module.exports = {
                 ranking: [],
 
                 channels: {
-                    ranking: null
+                    ranking: null,
+                    general: null,
+                    voice: null,
+                    moderation: null
                 }
             });
+            console.log(data[0])
+            console.log(data)
 
         const ch = guild.channels.cache.get(guild.systemChannelId);
         if (!ch) return;

@@ -126,7 +126,18 @@ module.exports = class Ticket {
                         role: role.id,
                         count: 0
                     },
-                    tickets: []
+                    tickets: [],
+
+                    giveaway: [],
+
+                    ranking: [],
+
+                    channels: {
+                        ranking: null,
+                        general: null,
+                        voice: null,
+                        moderation: null
+                    }
                 });
 
             await GuildSchema.updateOne(

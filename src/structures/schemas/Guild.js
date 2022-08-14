@@ -46,7 +46,10 @@ const GuildSchema = new Schema({
     ],
 
     channels: {
-        ranking: SchemaTypes.String || null
+        ranking: SchemaTypes.String || null,
+        general: SchemaTypes.String || null,
+        voice: SchemaTypes.String || null,
+        moderation: SchemaTypes.String || null
     }
 });
 
