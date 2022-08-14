@@ -174,8 +174,11 @@ module.exports = class Gengar extends dc.Client {
                 if (!command.name || !command.description || !command.type)
                     return this.logger.warn("command", `invalid arguments at ${path}!`);
 
-                if (command.permission && !perms.includes(command.permission))
-                    return this.logger.warn("command", `invalid Permission at ${command.name}`);
+                    if(command.permission) {
+                        command.permission.forEach((perm) => {
+                            if(!perms.includes(perm)) this.logger.warn("command", `invalid Permission at ${command.name}`);
+                        })
+                    }
 
                 if (command.devOnly) command.description = command.description + " (dev Only)";
 
@@ -341,17 +344,20 @@ module.exports = class Gengar extends dc.Client {
                             })
                             .catch(() => null);
 
-                    if (cmd.permission && !interaction.member.permissions.has(cmd.permission))
-                        return interaction
-                            .reply({
-                                embeds: [
-                                    this.embed("error")
-                                        .setTitle("You are not allowed to run this command!")
-                                        .setDescription(`Missing Permission: \`${cmd.permission}\``)
-                                ],
-                                ephemeral: true
-                            })
-                            .catch(() => null);
+                            if(cmd.permission) {
+                                cmd.permission.forEach((perm) => {
+                                    if(!interaction.member.permissions.has(perm)) return interaction
+                                    .reply({
+                                        embeds: [
+                                            this.embed("error")
+                                                .setTitle("You are not allowed to run this command!")
+                                                .setDescription(`Missing Permission: \`${cmd.permission}\``)
+                                        ],
+                                        ephemeral: true
+                                    })
+                                    .catch(() => null);
+                                })
+                            }
 
                     cmd.run(interaction, this);
                 } catch (err) {

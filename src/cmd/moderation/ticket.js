@@ -4,7 +4,7 @@ const Ticket = require("../../structures/modules/Ticket");
 module.exports = {
     name: "ticket",
     description: "setup ticket system",
-    permission: "Administrator",
+    permission: ["Administrator"],
     options: [
         {
             name: "status",
