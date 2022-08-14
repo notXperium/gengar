@@ -3,7 +3,7 @@ const { CommandType, CommandOptionType } = require("../../structures");
 module.exports = {
     name: "nuke",
     description: "nuke channel",
-    usage: "<nuke {channel}>",
+    usage: "</nuke {channel}>",
     permission: ["Administrator"
     ],
     options: [

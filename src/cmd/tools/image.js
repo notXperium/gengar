@@ -4,6 +4,7 @@ const { AttachmentBuilder } = require("discord.js");
 module.exports = {
     name: "image",
     description: "image manipulations",
+    usage: "</image [type] {text}>",
     options: [
         {
             name: "facts",

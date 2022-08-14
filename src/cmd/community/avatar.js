@@ -3,6 +3,7 @@ const { CommandType, CommandOptionType } = require("../../structures");
 module.exports = {
     name: "avatar",
     description: "display member avatar",
+    usage: "</avatar {user}>",
     options: [
         {
             name: "member",

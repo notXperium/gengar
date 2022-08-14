@@ -3,7 +3,7 @@ const { CommandType } = require("../../structures");
 module.exports = {
     name: "ping",
     description: "show bot ping",
-    usage: "<ping>",
+    usage: "</ping>",
     type: CommandType.ChatInput,
 
     run: (interaction, client) => {

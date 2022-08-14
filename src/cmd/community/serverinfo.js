@@ -4,6 +4,7 @@ const { ChannelType } = require("discord.js");
 module.exports = {
     name: "serverinfo",
     description: "show server information",
+    usage: "</serverinfo>",
     type: CommandType.ChatInput,
 
     run: (interaction, client) => {

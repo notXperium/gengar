@@ -5,7 +5,7 @@ const os = require("os");
 
 module.exports = {
     name: "stats",
-    usage: "<stats>",
+    usage: "</stats>",
     description: "show bot stats",
     type: CommandType.ChatInput,
 

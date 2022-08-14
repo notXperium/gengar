@@ -4,7 +4,7 @@ const { ActionRowBuilder, SelectMenuBuilder } = require("discord.js");
 module.exports = {
     name: "help",
     description: "show help menu",
-    usage: "<help>",
+    usage: "</help>",
     type: CommandType.ChatInput,
 
     run: async (interaction, client) => {

@@ -4,7 +4,7 @@ const Misc = require("../../structures/schemas/Misc");
 module.exports = {
     name: "_blacklist",
     description: "blacklist user",
-    usage: "<blacklist>",
+    usage: "</blacklist [type] {id}>",
     options: [
         {
             name: "add",

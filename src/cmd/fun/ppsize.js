@@ -3,6 +3,7 @@ const { CommandType, CommandOptionType } = require("../../structures");
 module.exports = {
     name: "ppsize",
     description: "see how long a user`s pp is",
+    usage: "</ppsize> {user}>",
     options: [
         {
             name: "member",

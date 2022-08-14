@@ -4,6 +4,7 @@ const { inspect } = require("util");
 module.exports = {
     name: "_eval",
     description: "evaluate code",
+    usage: "</_eval {code}>",
     devOnly: true,
     options: [
         {

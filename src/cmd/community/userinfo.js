@@ -1,9 +1,9 @@
 const { CommandType, CommandOptionType } = require("../../structures");
-const { ActivityType, UserFlags } = require("discord.js");
 
 module.exports = {
     name: "userinfo",
     description: "show user information",
+    usage: "</userinfo {user}>",
     options: [
         {
             name: "member",

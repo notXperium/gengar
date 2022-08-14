@@ -3,7 +3,7 @@ const { CommandType, CommandOptionType } = require("../../structures");
 module.exports = {
     name: "permission",
     description: "check permission of member",
-    usage: "<permision {member}>",
+    usage: "</permision {member}>",
     options: [
         {
             name: "member",

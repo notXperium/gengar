@@ -4,7 +4,7 @@ const { CommandType } = require("../../structures");
 module.exports = {
     name: "invite",
     description: "invite me",
-    usage: "<invite>",
+    usage: "</invite>",
     type: CommandType.ChatInput,
 
     run: (interaction, client) => {

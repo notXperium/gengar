@@ -6,6 +6,7 @@ const Canvas = require("canvas");
 module.exports = {
     name: "rank",
     description: "show user's rank",
+    usage: "</rank {user}>",
     options: [
         {
             name: "user",

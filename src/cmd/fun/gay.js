@@ -3,6 +3,7 @@ const { CommandType, CommandOptionType } = require("../../structures");
 module.exports = {
     name: "gay",
     description: "see how gay a user is",
+    usage: "</gay {user}>",
     options: [
         {
             name: "member",
