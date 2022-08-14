@@ -22,6 +22,8 @@ module.exports = {
                 },
                 tickets: [],
 
+                giveaway: [],
+
                 ranking: [],
 
                 channels: {

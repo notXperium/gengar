@@ -21,6 +21,20 @@ const GuildSchema = new Schema({
         }
     ],
 
+    giveaway: [
+        {
+            channel: SchemaTypes.String,
+            message: SchemaTypes.String,
+            winners: SchemaTypes.Number,
+            prize: SchemaTypes.String,
+            end: SchemaTypes.String,
+            paused: SchemaTypes.Boolean,
+            ended: SchemaTypes.Boolean,
+            host: SchemaTypes.String,
+            entered : [SchemaTypes.String]
+        }
+    ],
+
     ranking: [
         {
             user: SchemaTypes.String,
