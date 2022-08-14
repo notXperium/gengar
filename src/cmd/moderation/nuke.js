@@ -11,6 +11,7 @@ module.exports = {
             name: "channel",
             description: "channel to nuke",
             type: CommandOptionType.Channel,
+            channel_types: [0],
             required: false
         },
 
