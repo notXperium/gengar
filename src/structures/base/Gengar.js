@@ -171,7 +171,7 @@ module.exports = class Gengar extends dc.Client {
 
                 const perms = Object.keys(require("discord.js").PermissionsBitField.Flags);
 
-                if (!command.name || !command.description || !command.type)
+                if (!command.name || !command.description || !command.type || !command.usage)
                     return this.logger.warn("command", `invalid arguments at ${path}!`);
 
                     if(command.permission) {
