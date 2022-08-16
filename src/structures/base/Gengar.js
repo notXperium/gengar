@@ -144,6 +144,15 @@ module.exports = class Gengar extends dc.Client {
         this.on("ready", async () => {
             this.db.createConnection(this);
 
+            const Schema = require("../../structures/schemas/Misc");
+            const data = await Schema.find();
+            if(!data.length) await Schema.create({
+                team : [this.owner],
+                blacklistedUser: [],
+                blacklistedGuild:[],
+                owner: this.owner,
+            })    
+
             const handler = fs.readdirSync("./src/structures/handler");
 
             handler.forEach((_) => {
@@ -174,11 +183,11 @@ module.exports = class Gengar extends dc.Client {
                 if (!command.name || !command.description || !command.type || !command.usage)
                     return this.logger.warn("command", `invalid arguments at ${path}!`);
 
-                    if(command.permission) {
-                        command.permission.forEach((perm) => {
-                            if(!perms.includes(perm)) this.logger.warn("command", `invalid Permission at ${command.name}`);
-                        })
-                    }
+                if (command.permission) {
+                    command.permission.forEach((perm) => {
+                        if (!perms.includes(perm)) this.logger.warn("command", `invalid Permission at ${command.name}`);
+                    })
+                }
 
                 if (command.devOnly) command.description = command.description + " (dev Only)";
 
@@ -309,15 +318,13 @@ module.exports = class Gengar extends dc.Client {
                                     .setDescription(
                                         `**This is a Premium only command!** \n\n[Get Premium](${this.utils.url.support})`
                                     )
-                                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096}))
+                                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096 }))
                             ],
                             ephemeral: true
                         })
                         .catch(() => null);
-
-
-
-                    if (cmd.devOnly && !data[0]?.team.some((_) => _ === interaction.user.id))
+                        
+                    if (cmd.devOnly && !data[0]?.team.some((_) => _ === interaction.user.id) && interaction.user.id != this.owner)
                         return interaction
                             .reply({
                                 embeds: [
@@ -344,20 +351,20 @@ module.exports = class Gengar extends dc.Client {
                             })
                             .catch(() => null);
 
-                            if(cmd.permission) {
-                                cmd.permission.forEach((perm) => {
-                                    if(!interaction.member.permissions.has(perm)) return interaction
-                                    .reply({
-                                        embeds: [
-                                            this.embed("error")
-                                                .setTitle("You are not allowed to run this command!")
-                                                .setDescription(`Missing Permission: \`${cmd.permission}\``)
-                                        ],
-                                        ephemeral: true
-                                    })
-                                    .catch(() => null);
+                    if (cmd.permission) {
+                        cmd.permission.forEach((perm) => {
+                            if (!interaction.member.permissions.has(perm)) return interaction
+                                .reply({
+                                    embeds: [
+                                        this.embed("error")
+                                            .setTitle("You are not allowed to run this command!")
+                                            .setDescription(`Missing Permission: \`${cmd.permission}\``)
+                                    ],
+                                    ephemeral: true
                                 })
-                            }
+                                .catch(() => null);
+                        })
+                    }
 
                     cmd.run(interaction, this);
                 } catch (err) {
