@@ -475,7 +475,7 @@ module.exports = class Ticket {
                 ephemeral: true
             });
 
-        // if (userTickets[0].user === interaction.user.id) return interaction.reply({ content: "You cannot lock your own ticket!", ephemeral: true });
+        if (userTickets[0].user === interaction.user.id) return interaction.reply({ content: "You cannot lock your own ticket!", ephemeral: true });
 
 
         if (userTickets[0].locked)
