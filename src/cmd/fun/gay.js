@@ -17,7 +17,7 @@ module.exports = {
     run: async (interaction, client) => {
         const member = interaction.options.getMember("member") || interaction.member;
 
-        const random = Math.floor(Math.random() * (100 - 0) + 0);
+        const random = Math.floor(Math.random() * 100 + 0);
 
         interaction
             .reply({

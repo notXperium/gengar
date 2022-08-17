@@ -8,7 +8,7 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: async(interaction, client) => {
-        const random = Math.floor(Math.random() * (quotes.length - 0 ) + 0)
+        const random = Math.floor(Math.random() * quotes.length + 0)
 
         const quote = quotes[random];
 
