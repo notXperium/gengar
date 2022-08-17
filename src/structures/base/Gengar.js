@@ -146,12 +146,12 @@ module.exports = class Gengar extends dc.Client {
 
             const Schema = require("../../structures/schemas/Misc");
             const data = await Schema.find();
-            if(!data.length) await Schema.create({
-                team : [this.owner],
+            if (!data.length) await Schema.create({
+                team: [this.owner],
                 blacklistedUser: [],
-                blacklistedGuild:[],
+                blacklistedGuild: [],
                 owner: this.owner,
-            })    
+            })
 
             const handler = fs.readdirSync("./src/structures/handler");
 
@@ -323,7 +323,7 @@ module.exports = class Gengar extends dc.Client {
                             ephemeral: true
                         })
                         .catch(() => null);
-                        
+
                     if (cmd.devOnly && !data[0]?.team.some((_) => _ === interaction.user.id) && interaction.user.id != this.owner)
                         return interaction
                             .reply({
