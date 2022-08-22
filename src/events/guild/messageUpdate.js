@@ -5,7 +5,8 @@ module.exports = {
 
     run: async (oldMessage, newMessage, client) => {
 
-        if (!newMessage.channelId === oldMessage.author.id || !newMessage.author.bot) {
+        if (newMessage.channelId != oldMessage.author.id && !newMessage.author.bot) {
+            console.log(oldMessage.author)
 
             const guild = client.guilds.cache.get(oldMessage.guildId);
 
