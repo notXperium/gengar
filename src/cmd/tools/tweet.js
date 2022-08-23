@@ -10,7 +10,7 @@ module.exports = {
             name: "text",
             description: "text of the tweet",
             required: true,
-            type: CommandOptionType.String,
+            type: CommandOptionType.String
         },
         {
             name: "user",
@@ -21,22 +21,21 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: async (interaction, client) => {
-
         const member = interaction.options.getMember("user") || interaction.member;
         const query = interaction.options.getString("text");
-         const res = await axios.get("https://nekobot.xyz/api/imagegen", {
-             params: {
-                type: "tweet",
-                 username: member.user.username,
-                 text: query
-             }
-         }).then((d) => d.data).catch(() => null);
+        const res = await axios
+            .get("https://nekobot.xyz/api/imagegen", {
+                params: {
+                    type: "tweet",
+                    username: member.user.username,
+                    text: query
+                }
+            })
+            .then((d) => d.data)
+            .catch(() => null);
 
-         return interaction.reply({
-            embeds: [
-                client.embed()
-                .setImage(res.message)
-            ]
-         })
+        return interaction.reply({
+            embeds: [client.embed().setImage(res.message)]
+        });
     }
-}
+};

@@ -31,7 +31,7 @@ const GuildSchema = new Schema({
             paused: SchemaTypes.Boolean,
             ended: SchemaTypes.Boolean,
             host: SchemaTypes.String,
-            entered : [SchemaTypes.String]
+            entered: [SchemaTypes.String]
         }
     ],
 

@@ -1,6 +1,6 @@
 module.exports = async (client, PG) => {
     const dir = await PG(`${process.cwd()}/src/buttons/**/*.js`);
-    
+
     dir.map(async (_) => {
         const button = require(_);
 

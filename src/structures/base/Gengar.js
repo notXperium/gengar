@@ -146,12 +146,13 @@ module.exports = class Gengar extends dc.Client {
 
             const Schema = require("../../structures/schemas/Misc");
             const data = await Schema.find();
-            if (!data.length) await Schema.create({
-                team: [this.owner],
-                blacklistedUser: [],
-                blacklistedGuild: [],
-                owner: this.owner,
-            })
+            if (!data.length)
+                await Schema.create({
+                    team: [this.owner],
+                    blacklistedUser: [],
+                    blacklistedGuild: [],
+                    owner: this.owner
+                });
 
             const handler = fs.readdirSync("./src/structures/handler");
 
@@ -186,7 +187,7 @@ module.exports = class Gengar extends dc.Client {
                 if (command.permission) {
                     command.permission.forEach((perm) => {
                         if (!perms.includes(perm)) this.logger.warn("command", `invalid Permission at ${command.name}`);
-                    })
+                    });
                 }
 
                 if (command.devOnly) command.description = command.description + " (dev Only)";
@@ -309,29 +310,35 @@ module.exports = class Gengar extends dc.Client {
 
                     if (!userRes) await User.create({ id: interaction.user.id });
 
-                    const premium = !res[0]?.premium && (!userRes[0]?.premium ?? false)
+                    const premium = !res[0]?.premium && (!userRes[0]?.premium ?? false);
 
-                    if (cmd.premium && premium) return interaction
-                        .reply({
-                            embeds: [
-                                this.embed("error")
-                                    .setDescription(
-                                        `**This is a Premium only command!** \n\n[Get Premium](${this.utils.url.support})`
-                                    )
-                                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096 }))
-                            ],
-                            ephemeral: true
-                        })
-                        .catch(() => null);
+                    if (cmd.premium && premium)
+                        return interaction
+                            .reply({
+                                embeds: [
+                                    this.embed("error")
+                                        .setDescription(
+                                            `**This is a Premium only command!** \n\n[Get Premium](${this.utils.url.support})`
+                                        )
+                                        .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096 }))
+                                ],
+                                ephemeral: true
+                            })
+                            .catch(() => null);
 
-                    if (cmd.devOnly && !data[0]?.team.some((_) => _ === interaction.user.id) && interaction.user.id != this.owner)
+                    if (
+                        cmd.devOnly &&
+                        !data[0]?.team.some((_) => _ === interaction.user.id) &&
+                        interaction.user.id != this.owner
+                    )
                         return interaction
                             .reply({
                                 embeds: [
                                     this.embed("error")
                                         .setTitle("You are not allowed to run this command!")
                                         .setDescription(
-                                            `**Only [${this.user.username.toUpperCase()}](${this.utils.url.support
+                                            `**Only [${this.user.username.toUpperCase()}](${
+                                                this.utils.url.support
                                             }) Developers are allowed to run this command!**`
                                         )
                                 ],
@@ -353,17 +360,18 @@ module.exports = class Gengar extends dc.Client {
 
                     if (cmd.permission) {
                         cmd.permission.forEach((perm) => {
-                            if (!interaction.member.permissions.has(perm)) return interaction
-                                .reply({
-                                    embeds: [
-                                        this.embed("error")
-                                            .setTitle("You are not allowed to run this command!")
-                                            .setDescription(`Missing Permission: \`${cmd.permission}\``)
-                                    ],
-                                    ephemeral: true
-                                })
-                                .catch(() => null);
-                        })
+                            if (!interaction.member.permissions.has(perm))
+                                return interaction
+                                    .reply({
+                                        embeds: [
+                                            this.embed("error")
+                                                .setTitle("You are not allowed to run this command!")
+                                                .setDescription(`Missing Permission: \`${cmd.permission}\``)
+                                        ],
+                                        ephemeral: true
+                                    })
+                                    .catch(() => null);
+                        });
                     }
 
                     cmd.run(interaction, this);

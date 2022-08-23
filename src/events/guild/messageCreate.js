@@ -115,15 +115,16 @@ module.exports = {
                 if (data.channels.ranking) {
                     const ch = message.guild.channels.cache.get(data.channels.ranking);
 
-                    if (!ch) return message.reply({
-                        embeds: [
-                            message.client
-                                .embed()
-                                .setThumbnail(message.author.displayAvatarURL({ size: 4096, dynamic: true }))
-                                .setTitle("Level UP!")
-                                .setDescription(`<@${message.author.id}> **is now Level: ${level + 1}**`)
-                        ]
-                    });;
+                    if (!ch)
+                        return message.reply({
+                            embeds: [
+                                message.client
+                                    .embed()
+                                    .setThumbnail(message.author.displayAvatarURL({ size: 4096, dynamic: true }))
+                                    .setTitle("Level UP!")
+                                    .setDescription(`<@${message.author.id}> **is now Level: ${level + 1}**`)
+                            ]
+                        });
 
                     ch.send({
                         embeds: [

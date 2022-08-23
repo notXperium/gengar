@@ -16,12 +16,10 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: (interaction, client) => {
-
         const member = interaction.options.getMember("user");
 
         const data = roast[Math.floor(Math.random() * roast.length - 0)];
 
-        return interaction.reply({content: `<@${member.user.id}> ${data}`})
+        return interaction.reply({ content: `<@${member.user.id}> ${data}` });
     }
-
-}
+};

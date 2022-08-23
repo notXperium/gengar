@@ -8,32 +8,35 @@ module.exports = {
     type: CommandType.ChatInput,
 
     run: async (interaction, client) => {
-
         const data = await Schema.findOne({ id: interaction.guild.id });
 
-        if (!data) return interaction.reply({ content: "Please try again later!", ephemeral: true }) && await Schema.create({
-            id: interaction.guild.id,
-            name: interaction.guild.name,
-            ticketSystem: {
-                category: null,
-                transcript: null,
-                create: null,
-                role: null,
-                count: null
-            },
-            tickets: [],
+        if (!data)
+            return (
+                interaction.reply({ content: "Please try again later!", ephemeral: true }) &&
+                (await Schema.create({
+                    id: interaction.guild.id,
+                    name: interaction.guild.name,
+                    ticketSystem: {
+                        category: null,
+                        transcript: null,
+                        create: null,
+                        role: null,
+                        count: null
+                    },
+                    tickets: [],
 
-            giveaways: [],
+                    giveaways: [],
 
-            ranking: [],
+                    ranking: [],
 
-            channels: {
-                ranking: null,
-                general: null,
-                voice: null,
-                moderation: null
-            }
-        });
+                    channels: {
+                        ranking: null,
+                        general: null,
+                        voice: null,
+                        moderation: null
+                    }
+                }))
+            );
 
         const ranking = [...new Set(data.ranking.sort((a, b) => b.fullXp - a.fullXp))].slice(0, 10);
 
@@ -44,20 +47,22 @@ module.exports = {
             });
         ranking.map((_) => {
             const rank = ranking.map((x) => x.user).indexOf(_.user) + 1;
-            console.log(rank)
-        })
+            console.log(rank);
+        });
         return interaction.reply({
             embeds: [
-                client.embed()
+                client
+                    .embed()
                     .setTitle("Leaderboard")
-                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096 }))
-                    .setDescription(`
-                ${ranking.map((_) => {
+                    .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 4096 })).setDescription(`
+                ${ranking
+                    .map((_) => {
                         const rank = ranking.map((x) => x.user).indexOf(_.user) + 1;
-                        return `\`${rank}.\` <@${_.user}> **Level » ${_.level} (\`${_.fullXp}Xp\`)**`
-                    }).join("\n")}
+                        return `\`${rank}.\` <@${_.user}> **Level » ${_.level} (\`${_.fullXp}Xp\`)**`;
+                    })
+                    .join("\n")}
                 `)
             ]
-        })
+        });
     }
-}
+};

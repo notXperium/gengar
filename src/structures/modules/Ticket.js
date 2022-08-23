@@ -447,7 +447,7 @@ module.exports = class Ticket {
             return interaction.reply({
                 embeds: [interaction.client.embed("error").setTitle("you need to setup the ticket system again!")],
                 ephemeral: true
-            })
+            });
 
         const userTickets = data[0].tickets.filter((_) => _.user === interaction.user.id);
 
@@ -475,14 +475,14 @@ module.exports = class Ticket {
                 ephemeral: true
             });
 
-        if (userTickets[0].user === interaction.user.id) return interaction.reply({ content: "You cannot lock your own ticket!", ephemeral: true });
-
+        if (userTickets[0].user === interaction.user.id)
+            return interaction.reply({ content: "You cannot lock your own ticket!", ephemeral: true });
 
         if (userTickets[0].locked)
             return interaction.reply({ content: "This Ticket is already locked!", ephemeral: true });
 
-        data[0].tickets.find(_ => _.channel === interaction.channel.id).locked = true;
-        data[0].save().catch()
+        data[0].tickets.find((_) => _.channel === interaction.channel.id).locked = true;
+        data[0].save().catch();
 
         channel.permissionOverwrites.edit(userTickets[0].user, { ViewChannel: false });
 
@@ -503,7 +503,8 @@ module.exports = class Ticket {
 
         interaction.reply({
             embeds: [
-                client.embed()
+                client
+                    .embed()
                     .setTitle("Tick has been locked!")
                     .setDescription(`Reopen the Ticket for <@${userTickets[0].user}>`)
             ],
@@ -515,17 +516,19 @@ module.exports = class Ticket {
                         .setLabel("Reopen Ticket")
                         .setStyle("Primary")
                 )
-            ], ephemeral: true
-        })
+            ],
+            ephemeral: true
+        });
     }
 
     async reopen(interaction) {
         const data = await GuildSchema.find({ id: interaction.guild.id });
 
-        if (!data[0] || !data[0].tickets.length) return interaction.reply({
-            embeds: [interaction.client.embed("error").setTitle("you need to setup the ticket system again!")],
-            ephemeral: true
-        });
+        if (!data[0] || !data[0].tickets.length)
+            return interaction.reply({
+                embeds: [interaction.client.embed("error").setTitle("you need to setup the ticket system again!")],
+                ephemeral: true
+            });
 
         const userTickets = data[0].tickets.filter((_) => _.user === interaction.user.id);
 
@@ -553,14 +556,14 @@ module.exports = class Ticket {
                 ephemeral: true
             });
 
-        if (userTickets[0].user === interaction.user.id) return interaction.reply({ content: "You cannot reopen your own ticket!", ephemeral: true });
-
+        if (userTickets[0].user === interaction.user.id)
+            return interaction.reply({ content: "You cannot reopen your own ticket!", ephemeral: true });
 
         if (!userTickets[0].locked)
             return interaction.reply({ content: "This Ticket is not locked!", ephemeral: true });
 
-        data[0].tickets.find(_ => _.channel === interaction.channel.id).locked = false;
-        data[0].save().catch()
+        data[0].tickets.find((_) => _.channel === interaction.channel.id).locked = false;
+        data[0].save().catch();
 
         interaction.channel.permissionOverwrites.edit(userTickets[0].user, { ViewChannel: false });
 
@@ -579,16 +582,15 @@ module.exports = class Ticket {
                 ]
             });
 
-        interaction.reply({
-            embeds: [
-                client.embed()
-                    .setTitle("Tick has been reopened!")
-            ]
-        }).then(() => {
-            setTimeout(() => {
-                interaction.deleteReply()
-            }, 20000)
-        })
+        interaction
+            .reply({
+                embeds: [client.embed().setTitle("Tick has been reopened!")]
+            })
+            .then(() => {
+                setTimeout(() => {
+                    interaction.deleteReply();
+                }, 20000);
+            });
     }
 };
 
