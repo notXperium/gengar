@@ -4,7 +4,7 @@ module.exports = {
     name: "nuke",
     description: "nuke channel",
     usage: "</nuke {channel}>",
-    permission: ["Administrator"],
+    permission: "Administrator",
     options: [
         {
             name: "channel",

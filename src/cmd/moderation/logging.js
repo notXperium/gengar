@@ -5,7 +5,7 @@ module.exports = {
     name: "logging",
     description: "Configures logging",
     usage: "</logging [type] {status} {channel}>",
-    permission: ["Administrator"],
+    permission: "Administrator",
     options: [
         {
             name: "general",

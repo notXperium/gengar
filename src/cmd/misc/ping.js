@@ -18,7 +18,7 @@ module.exports = {
                         .embed()
                         .setTitle("Ping")
                         .setDescription(
-                            `**Latency: [${interaction.createdTimestamp - Date.now()}](${
+                            `**Latency: [${Date.now() - interaction.createdTimestamp}](${
                                 client.utils.url.support
                             }) ms \nApi Ping: [${client.ws.ping}](${client.utils.url.support}) ms**`
                         )

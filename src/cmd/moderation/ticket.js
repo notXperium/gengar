@@ -5,7 +5,7 @@ module.exports = {
     name: "ticket",
     description: "setup ticket system",
     usage: "</ticket {status} {role}>",
-    permission: ["Administrator"],
+    permission: "Administrator",
     options: [
         {
             name: "status",
